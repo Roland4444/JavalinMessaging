@@ -12,9 +12,15 @@ object Sender {
     .version(Version.HTTP_2)
     .build();
   val server = "http://127.0.0.1:8888/";
+  val objServer = "http://127.0.0.1:8888/obj"
   val request = HttpRequest.newBuilder()
     .uri(URI.create(server))
     .GET()
+    .build();
+
+  val objReq = HttpRequest.newBuilder()
+    .uri(URI.create(objServer))
+  //  .POST()
     .build();
 
 
@@ -46,3 +52,6 @@ object Sender {
     app.get("/sb", sendBinaryViaPost)
   }
 }
+
+
+case class sendFile(name: String, body: Array[Byte]) extends Serializable
