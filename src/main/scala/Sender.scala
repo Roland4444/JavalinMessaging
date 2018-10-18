@@ -1,13 +1,15 @@
+import java.io.File
 import java.net.URI
 import java.net.http.{HttpClient, HttpRequest}
 import java.net.http.HttpClient.Version
 import java.net.http.HttpRequest.{BodyPublisher, BodyPublishers}
 import java.nio.ByteBuffer
+import java.nio.file.Files
 import java.util.concurrent.Flow
 
 import io.javalin.{Context, Handler, Javalin}
 object Sender {
-  val arr = Array[Byte](0xaa.toByte, 0xaa.toByte, 0x55.toByte, 0x55.toByte)
+  val arr = Files.readAllBytes(new File("./a2002011001_e02_16kHz.wav").toPath);
   val httpClient = HttpClient.newBuilder()
     .version(Version.HTTP_2)
     .build();
